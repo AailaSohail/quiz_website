@@ -1,0 +1,43 @@
+{% extends "quiz//layout.html" %}
+
+{% block body %}
+    <div class="container1">  
+        {% if message %}
+        <div class="alert alert-danger align-right" >{{ message }}</div>
+    {% endif %}
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="{% url 'register' %}" class="log-in-form" method="post">
+                    {% csrf_token %}
+                    <h2 class="title">Register</h2>
+                    <div class="input-field">
+                        <i class="fa fa-user"></i>
+                        <input autofocus type="text" name="username" placeholder="Username">                
+                      </div>
+                  <div class="input-field">
+                    <i class="fa fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Email Address">            
+                  </div>
+                  <div class="input-field">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" name="password" placeholder="Password">
+                  </div>
+                  <div class="input-field">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" name="confirmation" placeholder="Confirm Password">            
+                  </div>
+                  <input class="btn" type="submit" value="Register">
+                  Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+                  <div class="panel-right">
+                  </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <img src="../static/quiz/images/register.svg" alt="Registering cats" class="image">
+            </div>
+        </div>
+    </div>
+{% endblock %}

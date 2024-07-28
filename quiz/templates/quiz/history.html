@@ -1,0 +1,30 @@
+{% extends "quiz/layout.html" %}
+
+{% block body %}
+
+<h1><img src="../static/quiz/images/catt.png" class="image-nav">{{games}} quizes down!<img src="../static/quiz/images/cattt.png" class="image-nav"></h1>
+<hr>
+<div class="container4">
+<table>
+    <tr id="table_heading">
+
+        <th>Category</th>
+        <th>Difficulty</th>
+        <th>Total Score</th>
+        <th>Your Score</th>
+    </tr>
+{% for history in history %}
+    <tr>
+        <td>{{history.category}}</td>
+        {% if history.difficulty %}
+        <td>{{history.difficulty}}</td>
+        {% else %}
+        <td>Any Difficulty</td>
+        {% endif %}
+        <td>{{history.total_questions}}</td>
+        <td>{{history.score}}</td>
+    </tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}CAT-ASTROPHIC{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'quiz/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="#" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            div.headings{
+                margin-bottom:65px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: transparent;
+                -webkit-text-stroke: 1px rgb(116, 69, 0);
+                background: url(../static/quiz/images/brownstrips.jpeg);
+                -webkit-background-clip: text;  
+                background-clip: text;
+                background-position:0 0;
+                animation: back 20s linear infinite;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="navbar-collapse w-100 order-1 order-md-0 dual-collapse2">
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'index' %}"><strong>{{ user.username }}</strong></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'history' %}">Your Playing History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="logoutno" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="mx-auto order-0">
+                <a class="navbar-brand mx-auto" href="{% url 'index' %}">CAT-ASTROPHIC QUIZES</a>
+            </div>
+            <div class="mx-auto order-0">
+                <img src="../static/quiz/images/cat.png" alt="Welcome cats" class="image-nav">
+            </div>
+            <div class="navbar-collapse w-100 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            {% endif %}
+        </nav>
+        <script>
+            const hamburger = document.querySelector(".hamburger");
+            const nav_menu = document.querySelector(".navbar-nav");
+
+            hamburger.addEventListener("click", () =>{
+                hamburger.classList.toggle("active");
+                nav_menu.classList.toggle("active");
+                console.log("hello")
+            })
+            document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click",() =>{
+                hamburger.classList.remove("active");
+                nav_menu.classList.remove("active");
+            }))
+        </script>
+        <div class="body">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

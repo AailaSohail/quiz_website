@@ -1,0 +1,18 @@
+{% extends "quiz/layout.html" %}
+
+{% block body %}
+  <div class="headings">WELCOME</div>
+  <div class="container2">
+  {% for category in categories %}
+  <div class="card" style="--clr:#009688">
+    <div class="imgBx"><img src="{{category.image}}"></div>
+    <div class="description"><h1>{{category}}</h1><p>{{category.description}}</p>
+    <form action="{% url 'make_game' category  %}" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn" value="start">
+    </form>
+</div>
+  </div>
+  {% endfor %}
+  </div>
+{% endblock %}

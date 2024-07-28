@@ -1,0 +1,39 @@
+{% extends "quiz/layout.html" %}
+
+{% block body %}
+<div class="container3">
+    <div class="container3-baby">
+    <div class="start-screen">
+        <h1 class="quiz-heading">{{category}}</h1>
+        <div class="settings">
+            <label for="num-questions">Number of Questions</label>
+            <img src="../static/quiz/images/kitty.png" class="image-nav">
+            <form action="{% url 'quiz' category  %}" method="post">
+                {% csrf_token %}
+            <select id="numQuestions" name="questions">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+            </select>
+            <label for="difficulty">Difficulty Level</label>
+            <img src="../static/quiz/images/happy.png"  class="image-nav">
+            <select id="difficulty" name="difficulty">
+                <option value="">any difficulty</option>
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
+            </select>
+            <div class="row">
+                <input type="submit" class="btn" value="start quiz">
+        </form>
+        <form action="{% url 'index' %}">
+            <input type="submit" class="btn" value="back">
+        </form>
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
